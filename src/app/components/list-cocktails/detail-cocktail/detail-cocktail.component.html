@@ -1,0 +1,80 @@
+<div class="row" id="detail" *ngIf="!loadingCocktail && cocktail">
+  <div class="col-12 text-center">
+
+      <div class="row">
+        <div class="col-12">
+          <h3>{{ cocktail.name }}</h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+           <img class="img-fluid w-25 rounded" [src]="cocktail.img" alt="">
+        </div>
+      </div>
+
+      <div class="row pr-4 pl-4 mt-4 mb-4 text-center">
+        <div class="col-12 mt-4 mb-4 text-center w-50">
+          <h3>Instrucciones</h3>
+          <p>{{ cocktail.instructions }}</p>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-6" *ngIf="cocktail.numIngredients !== 0">
+          <h3>Ingredientes</h3>
+          <ul>
+            <li *ngFor="let ingredient of cocktail.ingredients">
+              {{ ingredient }}
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-6" *ngIf="cocktail.numMeasures !== 0">
+          <h3>Medidas</h3>
+          <ul>
+            <li *ngFor="let measure of cocktail.measures">
+              {{ measure }}
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="row pr-4 pl-4 mt-4 mb-4">
+        <div class="col-12">
+          <button type="button" class="btn btn-block btn-primary" [routerLink]="['/list-cocktails']">
+            Volver
+          </button>
+        </div>
+      </div>
+
+  </div>
+</div>
+
+<div class="row" *ngIf="!loadingCocktail && !cocktail">
+  <div class="col-12">
+
+    <div class="row">
+      <div class="col-12 text-center">
+        <p>No se ha encontrado ese cocktail</p>
+      </div>
+    </div>
+
+    <div class="row mb-2 pr-4 pl-4">
+      <div class="col-12">
+        <button type="button" class="btn btn-block btn-primary" [routerLink]="['/list-cocktails']">
+          Volver
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="h-100" *ngIf="loadingCocktail">
+  <div class="spinner">
+    <img src="assets/img/spinner.gif">
+  </div>
+</div>
